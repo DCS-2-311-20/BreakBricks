@@ -43,13 +43,12 @@ function init() {
     new THREE.SphereGeometry(ballR, nSeg, nSeg),
     new THREE.MeshPhongMaterial({ color: 0x808080, specular: 0xa0a0a0 })
   );
-  ball.geometry.computeBoundingSphere();
   scene.add(ball);
 
   // ボールの移動
   const vBall = new THREE.Vector3();
   let vx = Math.sin(pi / 4);
-  let vz = Math.cos(pi / 4);
+  let vz = -Math.cos(pi / 4);
 
   function moveBall(delta) {
   }
@@ -69,17 +68,13 @@ function init() {
   // マウスクリックでスタートする
   window.addEventListener("mousedown", () => {
     if (!ballLive) { startBall(); }
-  }, false);
+  }, false);  
 
   // 外枠 ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   // 枠の作成
   //   大きさの定義
-  const hFrameW = 13;
-  const hFrameH = 2;
-  const hFrameD = 1;
-  const vFrameW = 0.5;
-  const vFrameH = 1.2;
-  const vFrameD = 22;
+  const hFrameW = 13;  const hFrameH = 2;  const hFrameD = 1;
+  const vFrameW = 0.5;  const vFrameH = 1.2;  const vFrameD = 22;
   {
     //   上の枠
     const tFrame = new THREE.Mesh(
@@ -97,6 +92,7 @@ function init() {
       new THREE.BoxGeometry(vFrameW, vFrameH, vFrameD),
       new MeshPhongMaterial({ color: 0xB3B3B3 })
     );
+
     //   右の枠
 
   }
@@ -126,6 +122,7 @@ function init() {
       new THREE.CylinderGeometry(paddleR, paddleR, paddleL, nSeg),
       new THREE.MeshPhongMaterial({ color: 0x333333, specular: 0x404040 })
     );
+
     // パドル端
     const sideGeometry
       = new THREE.SphereGeometry(paddleR, nSeg, nSeg, Math.PI / 2, Math.PI);
@@ -164,12 +161,9 @@ function init() {
   {
     const color = ["white", "red", "yellow", "blue", "purple", "green"];
     const param = {
-      h: 0.8, // ブロックの高さ
-      d: 0.4, // ブロックの奥行
-      nRow: 6, // ブロックの行数
-      nCol: 9, // ブロックの列数
-      gapX: 0.1, // 横方向の隙間
-      gapZ: 0.3 // 縦方向の隙間
+      h: 0.8, /* ブロックの高さ */ d: 0.4, /* ブロックの奥行 */
+      nRow: 6, /* ブロックの行数 */ nCol: 9, /* ブロックの列数 */
+      gapX: 0.1, /* 横方向の隙間 */ gapZ: 0.3 /* 縦方向の隙間 */
     };
     // ブロックの幅
     param.w = (hFrameW - 2 * vFrameW - (param.nCol + 1) * param.gapX) / param.nCol;
