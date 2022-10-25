@@ -68,7 +68,7 @@ function init() {
   // マウスクリックでスタートする
   window.addEventListener("mousedown", () => {
     if (!ballLive) { startBall(); }
-  }, false);  
+  }, false);
 
   // 外枠 ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   // 枠の作成
