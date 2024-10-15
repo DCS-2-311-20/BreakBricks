@@ -5,7 +5,7 @@
 "use strict"; // 厳格モード
 
 import * as THREE from 'three';
-import GUI from 'gui';
+import GUI from 'ili-gui';
 import { MeshPhongMaterial } from 'three';
 
 // ３Ｄページ作成関数の定義
@@ -25,6 +25,8 @@ function init() {
   const axes = new THREE.AxesHelper(18);
   scene.add(axes);
 
+  // ブロック数のカウント
+  let nBlock = 0
 
   // スコア表示
   let score = 0;
@@ -41,7 +43,7 @@ function init() {
   const ballR = 0.3;
   const ball = new THREE.Mesh(
     new THREE.SphereGeometry(ballR, nSeg, nSeg),
-    new THREE.MeshPhongMaterial({ color: 0x808080, specular: 0xa0a0a0 })
+    new THREE.MeshPhongMaterial({ color: 0x808080, shininess: 100, specular: 0xa0a0a0 })
   );
   scene.add(ball);
 
@@ -157,7 +159,6 @@ function init() {
   // ブロック ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   // ブロックの生成
   const bricks = new THREE.Group();
-  let nBrick = 0;
   {
     const color = ["white", "red", "yellow", "blue", "purple", "green"];
     const param = {
@@ -188,7 +189,7 @@ function init() {
   }
 
   // 光源の設定
-  const light = new THREE.SpotLight();
+  const light = new THREE.SpotLight(0xffffff, 1800);
   light.position.set(0, 15, -10);
   scene.add(light);
 
