@@ -16,7 +16,7 @@ function init() {
     z: 10,
     nRow: 6, /* ブロックの行数 */
     nCol: 9, /* ブロックの列数 */
-    axes: true,
+    axes: false,
   };
 
   // シーン作成
@@ -93,7 +93,7 @@ function init() {
     //   左の枠
     const lFrame = new THREE.Mesh(
       new THREE.BoxGeometry(vFrameW, vFrameH, vFrameD),
-      new MeshPhongMaterial({ color: 0xB3B3B3 })
+      new THREE.MeshPhongMaterial({ color: 0xB3B3B3 })
     );
 
     //   右の枠
@@ -194,13 +194,17 @@ function init() {
   light.position.set(0, 15, -10);
   scene.add(light);
 
+  // ヘッダ部分の高さ取得
+  const headerHeight = document.getElementById("Header").clientHeight
+  
   // カメラの設定
   const camera = new THREE.PerspectiveCamera(
-    param.fov, window.innerWidth / window.innerHeight, 0.1, 1000);
+    param.fov, window.innerWidth / (window.innerHeight-headerHeight), 0.1, 1000);
 
   // レンダラの設定
   const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  renderer.setSize(window.innerWidth, window.innerHeight-headerHeight);
   renderer.setClearColor(0x305070);
   document.getElementById("WebGL")
     .appendChild(renderer.domElement);
