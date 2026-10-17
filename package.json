@@ -1,0 +1,26 @@
+{
+  "name": "breakbricks",
+  "version": "1.0.0",
+  "description": "応用プログラミング 第4回課題",
+  "homepage": "https://github.com/DCS-2-311-20/BreakBricks#readme",
+  "bugs": {
+    "url": "https://github.com/DCS-2-311-20/BreakBricks/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DCS-2-311-20/BreakBricks.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "ap0401.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "lil-gui": "^0.21.0",
+    "three": "^0.186.1",
+    "vite": "^8.3.4"
+  }
+}

@@ -1,12 +1,11 @@
 //
 // 応用プログラミング 第4回 課題 (ap0401)
-// G484002024 拓殖太郎
+// G584002025 拓殖太郎
 //
 "use strict"; // 厳格モード
 
 import * as THREE from 'three';
-import GUI from 'ili-gui';
-import { MeshPhongMaterial } from 'three';
+import GUI from 'lil-gui';
 
 // ３Ｄページ作成関数の定義
 function init() {
@@ -203,7 +202,7 @@ function init() {
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x305070);
-  document.getElementById("WebGL-output")
+  document.getElementById("WebGL")
     .appendChild(renderer.domElement);
 
   // 描画更新
