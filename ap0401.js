@@ -16,7 +16,7 @@ function init() {
     z: 10,
     nRow: 6, /* ブロックの行数 */
     nCol: 9, /* ブロックの列数 */
-    axes: false,
+    axes: true,
   };
 
   // シーン作成
@@ -146,6 +146,7 @@ function init() {
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
     const intersects = new THREE.Vector3();
+    // パドルの移動
     function paddleMove(event) {
   
     }
@@ -168,12 +169,17 @@ function init() {
     const gapZ = 0.3; /* 縦方向の隙間 */
 
     // ブロックの幅
-    param.w = (hFrameW - 2 * vFrameW - (param.nCol + 1) * gapX) / param.nCol;
+    const w = (hFrameW - 2 * vFrameW - (param.nCol + 1) * gapX) / param.nCol;
     // ブロックを並べる
+    for (let r = 0; r < param.nRow; r++) {
+      for (let c =0; c < param.nCol; c++) {
 
-    // ブロック全体を奥に移動する
-
+      }
+    }
   }
+  // ブロック全体を奥に移動する
+
+  scene.add(bricks);
 
   // ブロックの衝突検出
   function brickCheck() {
@@ -183,6 +189,8 @@ function init() {
     });
   }
 
+  // ブロックの作り直し
+  
 
   // ブロックの再表示
   function resetBrick() {
@@ -210,8 +218,10 @@ function init() {
     .appendChild(renderer.domElement);
 
   // 描画更新
-  const clock = new THREE.Clock(); // 時間の管理
-  function render(time) {
+  const timer = new THREE.Timer(); // 時間の管理
+  timer.connect(document)
+  function render(timestamp) {
+    timer.update(timestamp);
     // カメラの再設定
     camera.fov = param.fov;
     camera.position.x = param.x;
@@ -222,7 +232,7 @@ function init() {
     // 座標軸の表示
     axes.visible = param.axes;
     // ゲーム画面の更新
-    let delta = clock.getDelta(); // 経過時間の取得
+    let delta = timer.getDelta(); // 経過時間の取得
     frameCheck(); // 枠の衝突判定
     paddleCheck(); // パドルの衝突判定
     brickCheck(); // ブロックの衝突判定
